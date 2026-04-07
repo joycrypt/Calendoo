@@ -1,16 +1,133 @@
-# React + Vite
+# 📅 Calendoo – Aesthetic Wall Calendar Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Calendoo is a modern, aesthetic **wall calendar web application** designed to replicate the look and feel of a physical hanging calendar while providing interactive digital features.
 
-Currently, two official plugins are available:
+🔗 **Deploy Link:** https://calendoo.netlify.app/
+🔗 **Repository:** https://github.com/joycrypt/Calendoo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🧱 Wall Calendar Aesthetic
+- Designed to resemble a **real-world wall calendar**
+- Includes:
+  - Hanging nail & string effect
+  - Spiral binding UI
+  - Hero image section synced with the current month
+- Focus on both **visual appeal + usability**
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 📆 Day Range Selector
+- Select a **start date and end date**
+- Visual states include:
+  - 🔵 Start date  
+  - 🔵 End date  
+  - 🔹 Highlighted range between them  
+- Smooth and intuitive interaction
+
+---
+
+### 📝 Integrated Notes Section
+- Dedicated notes panel for:
+  - Monthly notes  
+  - Date-range specific notes  
+- Clean UI for writing and managing notes
+
+---
+
+### 📱 Fully Responsive Design
+- Works seamlessly across all devices
+
+#### 💻 Desktop
+- Structured layout (calendar + notes panel side-by-side)
+- Maintains aesthetic spacing and alignment
+
+#### 📱 Mobile
+- Layout stacks vertically  
+- Fully touch-friendly interactions  
+- Maintains usability without clutter  
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React.js (Vite)  
+- **Language:** JavaScript  
+- **Styling:** CSS  
+- **Package Manager:** pnpm  
+- **Deployment:** Netlify  
+
+---
+
+## 🚀 Getting Started (Run Locally)
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/joycrypt/Calendoo.git
+cd Calendoo
+```
+
+### 2. Install dependencies
+```bash
+pnpm install
+```
+
+### 3. Run development server
+```bash
+pnpm dev
+```
+
+### 4. Open in browser
+```
+http://localhost:5173
+```
+
+---
+
+## 📦 Build for Production
+
+```bash
+pnpm build
+```
+
+The production files will be generated in the `dist` folder.
+
+---
+
+## 🌐 Deployment
+
+This project is deployed using Netlify.
+
+Steps:
+1. Build the project using `pnpm build`
+2. Upload the `dist` folder to Netlify  
+   OR connect GitHub repo for automatic deployment  
+
+---
+
+## 🎯 Design Philosophy
+
+- Blend of **real-world aesthetics + digital functionality**
+- Focus on:
+  - Clean UI  
+  - Smooth interactions  
+  - Responsive experience  
+
+---
+
+  
+
+---
+
+## 👨‍💻 Author
+
+**Dhananjoy Das**  
+- GitHub: https://github.com/joycrypt  
+
+---
+
+## ⭐ Show Your Support
+
+If you like this project, give it a ⭐ on GitHub!
