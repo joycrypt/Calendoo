@@ -1,0 +1,537 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Wall scene ─────────────────────────────────────────────── */
+.wall-scene {
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    background:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 60px),
+        repeating-linear-gradient(0deg,
+            rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px, transparent 60px),
+        linear-gradient(160deg, #c9b99a 0%, #b8a888 40%, #a89878 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px 40px;
+}
+
+/* ── Hanging wrapper ────────────────────────────────────────── */
+.hang-wrap {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== NAIL & HANGING STRING ===== */
+
+/* Nail centered above calendar */
+.nail {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.nail:hover {
+    transform: translateX(-50%) scale(1.05);
+}
+
+.nail-head {
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle at 35% 35%, #e0e0e0, #8a8a8a);
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+    margin: 0 auto;
+}
+
+.nail-shaft {
+    width: 4px;
+    height: 12px;
+    background: linear-gradient(to bottom, #9a9a9a, #5a5a5a);
+    margin: 0 auto;
+    border-radius: 0 0 2px 2px;
+}
+
+/* String SVG – catenary curve from nail to spiral binding ends */
+.string-svg {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 240px;
+    height: 48px;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.string-path {
+    stroke: #b87c4f;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    fill: none;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+/* Dark mode adjustments */
+.dark .nail-head {
+    background: radial-gradient(circle at 35% 35%, #b0b0b0, #4a4a4a);
+}
+
+.dark .nail-shaft {
+    background: linear-gradient(to bottom, #6a6a6a, #2a2a2a);
+}
+
+.dark .string-path {
+    stroke: #d4a373;
+}
+
+
+/* Drop shadow on the card to sell the wall-hang effect */
+.cal-card {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.08),
+        0 12px 32px rgba(0, 0, 0, 0.22),
+        0 2px 0px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    width: 100%;
+    max-width: 560px;
+    /* ← smaller than original 880px */
+    transform: rotate(-0.4deg);
+    /* slight tilt = natural hang */
+}
+
+/* Metal spiral binding container */
+.spiral-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    /* 12px */
+    padding: 0.5rem 1rem 0.25rem;
+    background: linear-gradient(to bottom, #f9fafb, #f3f4f6);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode support */
+.dark .spiral-bar {
+    background: linear-gradient(to bottom, #374151, #1f2937);
+}
+
+/* Individual metal ring */
+.spiral-ring {
+    position: relative;
+    width: 1.25rem;
+    /* 20px */
+    height: 2.5rem;
+    /* 40px */
+    border-radius: 9999px;
+    background: linear-gradient(145deg, #e5e7eb 0%, #b0b3b8 30%, #9ca3af 50%, #d1d5db 80%, #f3f4f6 100%);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 2px 3px rgba(0, 0, 0, 0.2), inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease;
+}
+
+/* Slight hover lift */
+.spiral-ring:hover {
+    transform: scale(1.02);
+}
+
+/* Inner dark core (hole) */
+.spiral-ring-core {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spiral-ring-core::after {
+    content: '';
+    width: 0.5rem;
+    /* 8px */
+    height: 1.5rem;
+    /* 24px */
+    border-radius: 9999px;
+    background: radial-gradient(circle, #6b7280 10%, #4b5563 70%, #374151 100%);
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Top metallic highlight */
+.spiral-ring-highlight {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.75rem;
+    /* 12px */
+    height: 0.25rem;
+    /* 4px */
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 9999px;
+    pointer-events: none;
+}
+
+/* Bottom shadow */
+.spiral-ring-shadow {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.75rem;
+    height: 0.25rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 9999px;
+    pointer-events: none;
+}
+
+/* Dark mode adjustments */
+.dark .spiral-ring {
+    background: linear-gradient(145deg, #4b5563 0%, #374151 30%, #1f2937 50%, #4b5563 80%, #6b7280 100%);
+}
+
+.dark .spiral-ring-core::after {
+    background: radial-gradient(circle, #111827 10%, #030712 70%, #000000 100%);
+}
+
+.dark .spiral-ring-highlight {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.dark .spiral-ring-shadow {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* ── Hero image ─────────────────────────────────── */
+.hero-section {
+    position: relative;
+    height: 140px;
+    overflow: hidden;
+    background: #1a1a2e;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.hero-img:hover {
+    transform: scale(1.03);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.hero-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    text-align: right;
+}
+
+.hero-badge .year-lbl {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.hero-badge .month-lbl {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+/* ── Body layout ────────────────────────────────── */
+.body-wrap {
+    display: flex;
+    flex-direction: row;
+}
+
+/* ── Calendar panel ─────────────────────────────── */
+.cal-panel {
+    flex: 1;
+    padding: 14px;
+    min-width: 0;
+}
+
+.nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.nav-group {
+    display: flex;
+    gap: 5px;
+}
+
+.nav-btn {
+    background: none;
+    border: 1px solid #e5e7eb;
+    color: #6b7280;
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.15s;
+}
+
+.nav-btn:hover {
+    background: #f3f4f6;
+}
+
+.nav-btn.today {
+    background: #1a1a2e;
+    color: #fff;
+    border-color: #1a1a2e;
+    font-weight: 500;
+}
+
+.nav-btn.today:hover {
+    opacity: 0.85;
+}
+
+.range-hint {
+    font-size: 10px;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* ── Grid ───────────────────────────────────────── */
+.wd-row,
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+.wd-row {
+    margin-bottom: 3px;
+}
+
+.wd-lbl {
+    text-align: center;
+    font-size: 8px;
+    font-weight: 500;
+    color: #9ca3af;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 3px 0;
+}
+
+/* ── Day cell ───────────────────────────────────── */
+.day-cell {
+    position: relative;
+    aspect-ratio: 1;
+    min-height: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 4px 1px 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.12s;
+    user-select: none;
+}
+
+.day-cell:hover {
+    background: #f3f4f6;
+}
+
+.day-num {
+    font-size: 10px;
+    font-weight: 400;
+    color: #111827;
+    line-height: 1;
+}
+
+.day-cell.other-month .day-num {
+    color: #d1d5db;
+}
+
+.day-cell.weekend .day-num {
+    color: #dc2626;
+}
+
+.day-cell.is-today .day-num {
+    background: #1a1a2e;
+    color: #fff;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+}
+
+.day-cell.range-start .day-num,
+.day-cell.range-end .day-num {
+    background: #2563eb;
+    color: #fff;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 500;
+}
+
+.day-cell.in-range {
+    background: #dbeafe;
+    border-radius: 0;
+}
+
+.day-cell.range-start {
+    background: #eff6ff;
+    border-radius: 5px 0 0 5px;
+}
+
+.day-cell.range-end {
+    background: #eff6ff;
+    border-radius: 0 5px 5px 0;
+}
+
+.day-cell.range-start.range-end {
+    border-radius: 5px;
+}
+
+.holiday-badge {
+    margin-top: 2px;
+    font-size: 7px;
+    font-weight: 500;
+    color: #dc2626;
+    background: #fee2e2;
+    border-radius: 3px;
+    padding: 1px 2px;
+    line-height: 1.2;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.note-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 4px;
+    height: 4px;
+    background: #2563eb;
+    border-radius: 50%;
+}
+
+.range-info {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    font-size: 10px;
+    color: #6b7280;
+}
+
+.clear-btn {
+    font-size: 9px;
+    color: #9ca3af;
+    background: none;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 1px 7px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.12s;
+}
+
+.clear-btn:hover {
+    background: #f3f4f6;
+}
+
+/* ── Notes panel ────────────────────────────────── */
+.notes-panel {
+    width: 150px;
+    flex-shrink: 0;
+    border-left: 1px solid #e5e7eb;
+    background: #fafafa;
+    padding: 14px 12px;
+}
+
+.notes-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #111827;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.notes-label {
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 5px;
+}
+
+.notes-ta {
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #374151;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 7px 8px;
+    resize: none;
+    outline: none;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    transition: border-color 0.15s;
+}
+
+.notes-ta:focus {
+    border-color: #2563eb;
+}
+
+.notes-hint {
+    font-size: 9px;
+    color: #9ca3af;
+    font-style: italic;
+}
